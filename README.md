@@ -1,5 +1,20 @@
-# projeto-cardapio
 
+# Cardápio do Ronnison
+
+Para rodar o front do projeto, usar versão mais recente do [Node (20.17.0)](https://nodejs.org/pt) 
+
+Para conseguir rodar o front
+
+Primeiro uso: 
+## Instalar os pacotes
+Ir no arquivo cardapio-web
 ```
-Versão do node 20.17.4
+npm install
+```
+
+## Usos seguintes
+Basta ir no arquivo cardapio-web
+```
+npm run dev
+
 ```
