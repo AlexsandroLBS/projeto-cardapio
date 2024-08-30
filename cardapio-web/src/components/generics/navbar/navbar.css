@@ -1,0 +1,9 @@
+.navbar {
+    min-width: 100vw;
+    width: 100vw;
+  }
+
+.navItems {
+width: calc(80vw - 100px); 
+/* Alguem resolve esse css dps, ideia colocar o botao de dark/light sempre no final da barra */
+}
