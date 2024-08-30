@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LoginPage from './pages/login/login';
 import NotFoundPage from './pages/not-found/not-found';
 import { ThemeProvider } from './components/theme-provider';
-import Navbar from './components/generics/navbar/navbar';
 
 function App() {
 
