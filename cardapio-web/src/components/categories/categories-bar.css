@@ -1,0 +1,9 @@
+.category {
+    transition: transform 0.3s ease, color 0.3s ease; 
+  }
+  
+  .category:hover {
+    transform: scale(1.1); 
+    color: #3FA771; /* Ver pq a cor n pode ser a primary, creio que seja algo do tailwind */
+  }
+  

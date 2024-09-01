@@ -1,9 +1,19 @@
 .navbar {
-    min-width: 100%;
-    width: 100%;
-  }
+  width: 100%;
+  min-width: 100%;
+  border-bottom: 0.1px solid #ccc;
+  padding: 10px; 
+  background-color: var(--background-color); 
+  top: 0; 
+  left: 0; 
+  z-index: 10; 
+}
 
 .navItems {
 width: 95%; 
-/* Alguem resolve esse css dps, ideia colocar o botao de dark/light sempre no final da barra */
+}
+
+.nav-separator {
+  width: 100%;
+
 }

@@ -1,0 +1,22 @@
+.menuContent {
+    max-width: 100%;
+    margin: 0 8em;
+    padding: 2rem;
+    text-align: center;
+  }
+
+.menuCarousel {
+  max-width: 90%;
+
+  margin-left: 8em;  
+  padding: 2rem;
+  padding-right: 0;
+  text-align: center;
+}
+
+.title{
+  
+  display: flex;
+  color: #3FA771;
+  font-size: 40px;
+}

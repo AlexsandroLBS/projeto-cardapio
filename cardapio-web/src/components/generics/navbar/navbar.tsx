@@ -10,11 +10,12 @@ import { NavigationMenu,
 import { ModeToggle } from '../mode-toggle'
 
 import './navbar.css'; 
+import { Separator } from '@/components/ui/separator';
 
 
 export default function Navbar() {
-  return (
-    <NavigationMenu className='navbar'>
+  return (<>
+    <NavigationMenu className='navbar mb-5'>
       <div className='navItems'>
 
       </div>
@@ -24,6 +25,7 @@ export default function Navbar() {
             </NavigationMenuItem>
         </NavigationMenuList>
     </NavigationMenu>
+    </>
 
   )
 }
