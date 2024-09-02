@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { NavigationMenu,
     NavigationMenuContent,
     NavigationMenuIndicator,
@@ -10,16 +10,29 @@ import { NavigationMenu,
 import { ModeToggle } from '../mode-toggle'
 
 import './navbar.css'; 
-import { Separator } from '@/components/ui/separator';
+import Cart from '@/components/cart/cart';
+import { OrderContext } from '@/contexts/order/order-context';
+import CartModal from '@/components/cart/cart';
 
 
 export default function Navbar() {
+  const orderContext = useContext(OrderContext);
+
+  if (!orderContext) {
+    return <p>Loading...</p>; 
+  }
+
+  const { cart } = orderContext;
+  
   return (<>
     <NavigationMenu className='navbar mb-5'>
       <div className='navItems'>
 
       </div>
         <NavigationMenuList>
+            <NavigationMenuItem >
+                <CartModal cart={cart}></CartModal>
+            </NavigationMenuItem>
             <NavigationMenuItem >
                 <ModeToggle></ModeToggle>      
             </NavigationMenuItem>

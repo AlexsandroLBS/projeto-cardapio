@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import ProductGalery from '@/components/product/product-galery'
 import { Product } from '@/models/product'
 import { productService } from '@/services/products-service'
@@ -10,7 +10,9 @@ import CategoriesBar from '@/components/categories/categories-bar'
 import { Categories } from '@/models/categories'
 import { categoriesService } from '@/services/categories-service'
 import { Input } from '@/components/ui/input'
-export default function MenuPage() {
+
+
+export default function MenuPage() { 
     const [products, setProducts] = useState<Product[]>([])
     const [categories, setCategories] = useState<Categories[]>([])
 

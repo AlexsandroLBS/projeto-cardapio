@@ -10,11 +10,11 @@ export default function ProductCard({ id, title, price, image, originalPrice }: 
     <div>
       <h2 className="text-lg font-bold mb-2">{title}</h2>
       <p className="mt-2 text-lg font-bold text-green-600">
-                  R$ {price.toFixed(2)}{" "}
-                  { !(price >= originalPrice) && <span className="text-gray-500 line-through">
-                    R$ {originalPrice?.toFixed(2)}
-                  </span>}
-                </p>
+        R$ {price.toFixed(2)}{" "}
+        { !(price >= originalPrice) && <span className="text-gray-500 line-through">
+          R$ {originalPrice?.toFixed(2)}
+        </span>}
+      </p>
     </div>
   </Card>
   );
