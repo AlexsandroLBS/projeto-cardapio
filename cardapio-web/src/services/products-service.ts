@@ -104,8 +104,6 @@ class ProductService {
   ];
   
   
-  
-
     getTopProducts(): Product[]{
         return this.products
     }

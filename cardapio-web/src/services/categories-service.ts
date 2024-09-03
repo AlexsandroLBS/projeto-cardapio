@@ -1,5 +1,4 @@
 import { Categories } from "@/models/categories";
-import { Product } from "@/models/product";
 
 class CategoriesService {
     private categories: Categories[] = [

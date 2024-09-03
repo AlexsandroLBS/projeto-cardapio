@@ -54,9 +54,9 @@ export default function CartModal({ cart }: CartModalProps) {
                   />
                   <div className="cart-item-details">
                     <p className="cart-item-name">{item.product.title}</p>
+                    <p className="cart-item-unit-price">R$ {item.price.toFixed(2)}</p>
                     <p className="cart-item-quantity">Quantidade: {item.quantity}</p>
-                    <p className="cart-item-unit-price">Preço Unitário: R$ {item.price.toFixed(2)}</p>
-                    <p className="cart-item-total-price">Total: R$ {(item.price * item.quantity).toFixed(2)}</p>
+                    <p className="cart-item-total-price">Total: <strong>R$ {(item.price * item.quantity).toFixed(2)}</strong></p>
                   </div>
                 </div>
               ))}

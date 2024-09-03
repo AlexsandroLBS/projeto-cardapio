@@ -4,8 +4,7 @@ import { Cart } from '@/models/cart/cart';
 import { CartLogisticType } from '@/models/enums/cart-logistic-type';
 
 const isUserLoggedIn = () => {
-  // Substitua pela lógica real de autenticação
-  return true; // Simulando que o usuário está logado
+  return true; 
 };
 
 export const emptyCart: Cart = {

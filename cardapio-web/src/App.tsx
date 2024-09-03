@@ -5,6 +5,7 @@ import NotFoundPage from './pages/not-found/not-found';
 import { ThemeProvider } from './components/theme-provider';
 import MenuPage from './pages/menu/menu';
 import { OrderProvider } from './contexts/order/order-provider';
+import StoreIdHandler from './utils/handlers/store-id-handler';
 
 function App() {
 
@@ -12,17 +13,21 @@ function App() {
     <>
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <Router>
+        <StoreIdHandler/>
         <Routes>
-          <Route path="/" element={
-            <OrderProvider> 
-              <MenuPage/> 
-            </OrderProvider>}
+          <Route path="/s/:storeId" element={
+            <OrderProvider>
+                <MenuPage />
+            </OrderProvider>
+            }
           />
           <Route path="/login" element={
-            <LoginPage/>} 
+            <LoginPage/>
+          } 
           />
           <Route path="*" element={
-            <NotFoundPage />} 
+            <NotFoundPage />
+          } 
           />
         </Routes>
       </Router>
