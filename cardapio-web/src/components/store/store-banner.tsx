@@ -20,9 +20,6 @@ export const StoreBanner: FC<StoreBannerProps> = ({ store }) => {
         />
       </div>
 
-      <div className=" flex items-end p-4">
-        <div className="text-white"></div>
-      </div>
 
       <div className="flex items-center h-30 bg-white p-4 shadow-lg rounded-b-lg">
         <img
@@ -45,7 +42,7 @@ export const StoreBanner: FC<StoreBannerProps> = ({ store }) => {
             </Badge>
           </div>
         </div>
-        <div className="ml-auto text-red-500">
+        <div className="ml-auto text-green-500">
           <a href="#">Ver mais</a>
         </div>
       </div>
