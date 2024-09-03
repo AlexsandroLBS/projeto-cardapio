@@ -27,7 +27,7 @@ export const StoreBanner: FC<StoreBannerProps> = ({ store }) => {
           alt={`${store.name} logo`}
           className="h-20 w-20 rounded-full bg-white p-1"
         />
-          <h1 className="text-xl font-bold">{store.name}</h1>
+        <h1 className="text-xl ml-4 font-bold">{store.name}</h1>
 
         <div className="ml-4">
           <div className="flex items-center text-sm text-gray-500">
