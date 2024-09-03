@@ -25,7 +25,7 @@ export default function Navbar() {
   const { cart } = orderContext;
   
   return (<>
-    <NavigationMenu className='navbar mb-5'>
+    <NavigationMenu  className='navbar mb-5'>
       <div className='navItems'>
 
       </div>
@@ -38,6 +38,7 @@ export default function Navbar() {
             </NavigationMenuItem>
         </NavigationMenuList>
     </NavigationMenu>
+    <div className='min-h-[40px]'></div>
     </>
 
   )

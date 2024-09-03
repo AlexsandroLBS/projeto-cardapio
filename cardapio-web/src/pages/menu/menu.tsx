@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import ProductGalery from '@/components/product/product-galery'
 import { Product } from '@/models/product'
 import { productService } from '@/services/products-service'
@@ -40,7 +40,7 @@ export default function MenuPage() {
 
     return (
     <>  
-        <Navbar/>
+        <Navbar />
         {store == null ? 
         <>
           Loja nao encontrada
@@ -48,10 +48,10 @@ export default function MenuPage() {
         : 
         <>
           <div className="menuContent ">
+          <StoreBanner store={store}></StoreBanner>
           <div className='mb-10'>
               <Input placeholder='Busque aqui por produtos'></Input>
           </div>
-          <StoreBanner store={store}></StoreBanner>
           <CategoriesBar categories={categories} ></CategoriesBar>
           </div>
           

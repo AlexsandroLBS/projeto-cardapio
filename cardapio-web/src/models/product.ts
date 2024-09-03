@@ -8,5 +8,5 @@ export interface Product {
     description?:string;
     servingSize?: string;
     originalPrice: number;
-    weight?: string;
+    weight: number;
   }

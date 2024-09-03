@@ -2,6 +2,7 @@ import { useState } from 'react';
 import ProductCard from './product-card';
 import { Product } from '@/models/product';
 import ProductDialog from './product-dialog';
+import { Separator } from '@radix-ui/react-separator';
 
 interface ProductGaleryProps {
   products: Product[]
@@ -23,15 +24,11 @@ export default function ProductGalery({ products }: ProductGaleryProps) {
 
   return (
     <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {products.map((product) => (
           <div key={product.id} onClick={() => openDialog(product)}>
             <ProductCard
-              id={product.id}
-              title={product.title}
-              price={product.price}
-              image={product.image}
-              originalPrice={product.originalPrice}
+              product={product}
             />
           </div>
         ))}

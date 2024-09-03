@@ -1,5 +1,3 @@
-import React from 'react'
-
 import {
     Drawer,
     DrawerClose,
@@ -7,8 +5,6 @@ import {
     DrawerDescription,
     DrawerFooter,
     DrawerHeader,
-    DrawerOverlay,
-    DrawerPortal,
     DrawerTitle,
     DrawerTrigger,
   } from "@/components/ui/drawer"
@@ -44,7 +40,7 @@ export default function CartModal({ cart }: CartModalProps) {
                 Adicione itens primeiro ao carrinho
               </DrawerDescription></>:
             <>
-             <DrawerDescription>
+             <DrawerDescription className="overflow-scroll">
               {cart.items.map((item, index) => (
                 <div key={index} className="cart-item">
                   <img 
@@ -67,9 +63,9 @@ export default function CartModal({ cart }: CartModalProps) {
                 style: 'currency',
                 currency: 'BRL',
               })}</Label>
-            <Button>Submit</Button>
-            <DrawerClose>
-                <Button variant="outline">Cancel</Button>
+            <DrawerClose className="gap-4">
+                <Button variant="outline" className="w-full mb-2">Esvaziar carrinho</Button>
+                <Button className="w-full">Confirmar pedido</Button>
             </DrawerClose>
             </DrawerFooter>
             </>

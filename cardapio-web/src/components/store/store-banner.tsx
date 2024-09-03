@@ -21,7 +21,7 @@ export const StoreBanner: FC<StoreBannerProps> = ({ store }) => {
       </div>
 
 
-      <div className="flex items-center h-30 bg-white p-4 shadow-lg rounded-b-lg">
+      <div style={{backgroundColor: 'hsl(var(--popover))'}} className="flex items-center h-30  p-4 shadow-lg rounded-b-lg" >
         <img
           src={store.logo.url}
           alt={`${store.name} logo`}

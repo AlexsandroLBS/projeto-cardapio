@@ -1,4 +1,4 @@
-function validateCPF(cpf: string | null): boolean {
+export function validateCPF(cpf: string | null): boolean {
     if (!cpf) return false;
     
     cpf = cpf.replace(/[^\d]+/g, '');
@@ -28,3 +28,13 @@ function validateCPF(cpf: string | null): boolean {
 
     return true;
 }
+
+
+export function formatWeight(weightInGrams: number) {
+    if (weightInGrams < 1000) {
+      return `${weightInGrams}g`;
+    } else {
+      const weightInKg = (weightInGrams / 1000).toFixed(2);
+      return `${weightInKg}kg`;
+    }
+  }

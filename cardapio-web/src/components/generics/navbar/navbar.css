@@ -3,10 +3,11 @@
   min-width: 100%;
   border-bottom: 0.1px solid #ccc;
   padding: 10px; 
-  background-color: var(--background-color); 
+  background-color: hsl(var(--card)); 
   top: 0; 
   left: 0; 
   z-index: 10; 
+  position: fixed;
 }
 
 .navItems {
