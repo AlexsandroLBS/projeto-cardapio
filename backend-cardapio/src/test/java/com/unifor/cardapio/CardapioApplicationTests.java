@@ -1,4 +1,4 @@
-package com.example.qualquer_coisa;
+package com.unifor.cardapio;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

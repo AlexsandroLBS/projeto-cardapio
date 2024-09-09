@@ -8,11 +8,11 @@
 		<version>3.3.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>qualquer_coisa</artifactId>
+	<groupId>com.unifor</groupId>
+	<artifactId>cardapio</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>cardapio</name>
-	<description>Um cardápio digital para o projeto final da cadeira de Arquitetura e Projeto de Sistemas.</description>
+	<name>Cardapio</name>
+	<description>Projeto final da disciplina de Projeto de Arquitetura de Sistemas.</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -27,20 +27,18 @@
 		<url/>
 	</scm>
 	<properties>
-		<java.version>22</java.version>
+		<java.version>21</java.version>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
-		</dependency>
 		<dependency>
 			<groupId>com.mysql</groupId>
 			<artifactId>mysql-connector-j</artifactId>

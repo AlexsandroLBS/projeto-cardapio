@@ -1,4 +1,4 @@
-package com.example.qualquer_coisa;
+package com.unifor.cardapio;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
