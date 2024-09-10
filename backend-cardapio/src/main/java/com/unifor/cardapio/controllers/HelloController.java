@@ -1,4 +1,4 @@
-package com.unifor.cardapio.rest;
+package com.unifor.cardapio.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
