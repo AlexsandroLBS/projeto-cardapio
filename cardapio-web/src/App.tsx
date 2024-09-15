@@ -9,31 +9,31 @@ import StoreIdHandler from './utils/handlers/store-id-handler';
 
 function App() {
 
-  return (
-    <>
-    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <Router>
-        <StoreIdHandler/>
-        <Routes>
-          <Route path="/s/:storeId" element={
-            <OrderProvider>
-                <MenuPage />
-            </OrderProvider>
-            }
-          />
-          <Route path="/login" element={
-            <LoginPage/>
-          } 
-          />
-          <Route path="*" element={
-            <NotFoundPage />
-          } 
-          />
-        </Routes>
-      </Router>
-    </ThemeProvider>
-    </>
-  )
+	return (
+		<>
+			<ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+				<Router>
+					<StoreIdHandler />
+					<Routes>
+						<Route path="/s/:storeId" element={
+							<OrderProvider>
+								<MenuPage />
+							</OrderProvider>
+						}
+						/>
+						<Route path="/login" element={
+							<LoginPage />
+						}
+						/>
+						<Route path="*" element={
+							<NotFoundPage />
+						}
+						/>
+					</Routes>
+				</Router>
+			</ThemeProvider>
+		</>
+	)
 }
 
 export default App
