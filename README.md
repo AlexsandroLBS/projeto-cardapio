@@ -1,4 +1,6 @@
-# Cardápio do Ronnison
+# _La Carte_
+
+Plataforma de cardápios.
 
 Projeto final da disciplina de Projeto de Arquitetura de Sistemas.
 
