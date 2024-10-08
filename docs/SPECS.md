@@ -34,3 +34,8 @@ La Carte é uma plataforma web inovadora destinada ao registro de restaurantes e
     * Endereço de Entrega
     * Pagamento confirmado (pela loja)
     * Entrega confirmada (pelo cliente)
+
+## Modelagem
+Para atender os requisitos acima contamos com a seguinte modelagem.
+
+![Database modelling diagram](./assets/ERD.png)
