@@ -31,5 +31,6 @@ La Carte é uma plataforma web inovadora destinada ao registro de restaurantes e
     * Items pedidos
     * Loja responsável
     * Horário do pedido
+    * Endereço de Entrega
     * Pagamento confirmado (pela loja)
     * Entrega confirmada (pelo cliente)
