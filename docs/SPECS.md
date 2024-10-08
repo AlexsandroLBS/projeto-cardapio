@@ -39,3 +39,7 @@ La Carte é uma plataforma web inovadora destinada ao registro de restaurantes e
 Para atender os requisitos acima contamos com a seguinte modelagem.
 
 ![Database modelling diagram](./assets/ERD.png)
+
+Esta modelagem se traduz, aproximadamente, nas seguintes classes Java.
+
+![Class models](./assets/modelling.png)
