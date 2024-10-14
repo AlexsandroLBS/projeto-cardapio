@@ -1,5 +1,6 @@
 package com.unifor.cardapio.models.store;
 
+import java.util.Date;
 import java.util.UUID;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -28,4 +29,5 @@ public class Store {
 	private String address;
 	private String phone;
 	private String imageUrl;
+	private Date created_at;
 }
