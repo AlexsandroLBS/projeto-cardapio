@@ -1,7 +1,5 @@
 package com.unifor.cardapio.models.orderItem;
 
-import java.util.UUID;
-
 import com.unifor.cardapio.models.order.Order;
 
 import jakarta.persistence.Entity;
@@ -27,7 +25,7 @@ import lombok.Setter;
 public class OrderItem {
 	@Id
 	@GeneratedValue
-	private UUID Id;
+	private Integer Id;
 	private Integer amount;
 	private Double price;
 	private String itemDescription;

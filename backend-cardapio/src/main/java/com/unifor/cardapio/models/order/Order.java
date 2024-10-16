@@ -1,7 +1,6 @@
 package com.unifor.cardapio.models.order;
 
 import java.util.Date;
-import java.util.UUID;
 
 import com.unifor.cardapio.models.client.Client;
 import com.unifor.cardapio.models.store.Store;
@@ -31,7 +30,7 @@ import lombok.Setter;
 public class Order {
 	@Id
 	@GeneratedValue
-	private UUID id;
+	private Integer id;
 	private Date orderTime;
 	private boolean confirmedPay;
 	private boolean confirmedDelivery;

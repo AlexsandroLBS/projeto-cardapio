@@ -1,7 +1,7 @@
 package com.unifor.cardapio.models.store;
 
 import java.util.Date;
-import java.util.UUID;
+
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,7 +23,7 @@ import jakarta.persistence.GeneratedValue;
 public class Store {
 	@Id
 	@GeneratedValue
-	private UUID id;
+	private Integer id;
 	private String name;
 	private String description;
 	private String address;

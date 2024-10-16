@@ -1,7 +1,5 @@
 package com.unifor.cardapio.models.dish;
 
-import java.util.UUID;
-
 import com.unifor.cardapio.models.store.Store;
 
 import jakarta.persistence.Table;
@@ -27,7 +25,7 @@ import jakarta.persistence.GeneratedValue;
 public class Dish {
 	@Id
 	@GeneratedValue
-	private UUID id;
+	private Integer id;
 	private String name;
 	private String description;
 	private Double price;

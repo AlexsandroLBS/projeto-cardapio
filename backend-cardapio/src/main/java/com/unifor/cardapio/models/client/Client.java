@@ -1,6 +1,5 @@
 package com.unifor.cardapio.models.client;
 
-import java.util.UUID;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,7 +21,7 @@ import jakarta.persistence.GeneratedValue;
 public class Client {
 	@Id
 	@GeneratedValue
-	private UUID id;
+	private Integer id;
 	private String name;
 	private String email;
 	private String password;

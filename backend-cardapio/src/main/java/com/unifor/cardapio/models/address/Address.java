@@ -1,7 +1,5 @@
 package com.unifor.cardapio.models.address;
 
-import java.util.UUID;
-
 import com.unifor.cardapio.models.client.Client;
 
 import jakarta.persistence.Table;
@@ -27,7 +25,7 @@ import jakarta.persistence.GeneratedValue;
 public class Address {
 	@Id
 	@GeneratedValue
-	private UUID id;
+	private Integer id;
 	private String address;
 	private String complement;
 	private String city;
