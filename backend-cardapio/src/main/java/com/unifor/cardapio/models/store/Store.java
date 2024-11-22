@@ -1,25 +1,16 @@
 package com.unifor.cardapio.models.store;
 
 import java.util.Date;
-
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 
-@Table(name = "stores")
-@Entity
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 /**
  * Models stores from MySQL db
  */
+@Table(name = "stores")
+@Entity
 public class Store {
 	@Id
 	@GeneratedValue
@@ -30,4 +21,48 @@ public class Store {
 	private String phone;
 	private String imageUrl;
 	private Date created_at;
+
+	// Getters
+	public Integer getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public Date getCreatedAt() {
+		return created_at;
+	}
+
+	public Integer getStoreId() {
+		return id;
+	}
+
+	// Setters
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
 }

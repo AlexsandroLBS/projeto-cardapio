@@ -34,4 +34,54 @@ public class Dish {
 	@ManyToOne
 	@JoinColumn(name = "fk_store")
 	private Store store;
+
+
+	public Integer getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public Store getStore() {
+		return store;
+	}
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+	public void setStore(Store store) {
+		this.store = store;
+	}
 }
