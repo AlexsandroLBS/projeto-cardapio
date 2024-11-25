@@ -12,6 +12,7 @@ import java.util.List;
 
 @NoArgsConstructor
 @Entity
+@Table(name = "\"user\"")
 public class User implements UserDetails {
 
     @Id
@@ -78,7 +79,6 @@ public class User implements UserDetails {
         return store != null ? store.getStoreId() : null;
     }
 
-    // Construtor personalizado
     public User(String username, String password, String email, String name, UserRole role) {
         this.username = username;
         this.password = password;
@@ -87,7 +87,6 @@ public class User implements UserDetails {
         this.role = role;
     }
 
-    // Implementação obrigatória da interface UserDetails
     @Override
     public boolean isAccountNonExpired() {
         return true;
