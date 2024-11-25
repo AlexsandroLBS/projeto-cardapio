@@ -1,7 +1,9 @@
 package com.unifor.cardapio.controllers;
 
+import com.unifor.cardapio.controllers.interfaces.IAddressController;
 import com.unifor.cardapio.models.address.Address;
 import com.unifor.cardapio.services.AddressService;
+import com.unifor.cardapio.services.interfaces.IAddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,9 +13,9 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/addresses")
-public class AddressController {
+public class AddressController implements IAddressController {
     @Autowired
-    private AddressService addressService;
+    private IAddressService addressService;
 
     @GetMapping
     public List<Address> findAll() {

@@ -1,7 +1,9 @@
 package com.unifor.cardapio.controllers;
 
+import com.unifor.cardapio.controllers.interfaces.IOrderItemController;
 import com.unifor.cardapio.models.orderItem.OrderItem;
 import com.unifor.cardapio.services.OrderItemService;
+import com.unifor.cardapio.services.interfaces.IOrderItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,9 +13,9 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/order-items")
-public class OrderItemController {
+public class OrderItemController implements IOrderItemController {
     @Autowired
-    private OrderItemService orderItemService;
+    private IOrderItemService orderItemService;
 
     @GetMapping
     public List<OrderItem> findAll() {

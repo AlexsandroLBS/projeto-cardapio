@@ -19,9 +19,6 @@ import jakarta.persistence.GeneratedValue;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-/**
- * Models dishes from MySQL db
- */
 public class Dish {
 	@Id
 	@GeneratedValue

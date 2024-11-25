@@ -2,6 +2,7 @@ package com.unifor.cardapio.services;
 
 import com.unifor.cardapio.models.address.Address;
 import com.unifor.cardapio.repositories.AddressRepository;
+import com.unifor.cardapio.services.interfaces.IAddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class AddressService {
+public class AddressService implements IAddressService {
     @Autowired
     private AddressRepository addressRepository;
 

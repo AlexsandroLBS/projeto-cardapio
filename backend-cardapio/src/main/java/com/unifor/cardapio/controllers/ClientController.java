@@ -1,7 +1,9 @@
 package com.unifor.cardapio.controllers;
 
+import com.unifor.cardapio.controllers.interfaces.IClientController;
 import com.unifor.cardapio.models.client.Client;
 import com.unifor.cardapio.services.ClientService;
+import com.unifor.cardapio.services.interfaces.IClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,9 +13,9 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/clients")
-public class ClientController {
+public class ClientController implements IClientController {
     @Autowired
-    private ClientService clientService;
+    private IClientService clientService;
 
     @GetMapping
     public List<Client> findAll() {

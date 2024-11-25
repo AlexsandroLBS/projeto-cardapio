@@ -2,6 +2,7 @@ package com.unifor.cardapio.services;
 
 import com.unifor.cardapio.models.dish.Dish;
 import com.unifor.cardapio.repositories.DishRepository;
+import com.unifor.cardapio.services.interfaces.IDishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class DishService {
+public class DishService implements IDishService {
     @Autowired
     private DishRepository dishRepository;
 

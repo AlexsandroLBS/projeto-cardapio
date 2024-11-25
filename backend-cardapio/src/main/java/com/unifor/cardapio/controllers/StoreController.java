@@ -1,7 +1,9 @@
 package com.unifor.cardapio.controllers;
 
+import com.unifor.cardapio.controllers.interfaces.IStoreController;
 import com.unifor.cardapio.models.store.Store;
 import com.unifor.cardapio.services.StoreService;
+import com.unifor.cardapio.services.interfaces.IStoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,9 +13,9 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/stores")
-public class StoreController {
+public class StoreController implements IStoreController {
     @Autowired
-    private StoreService storeService;
+    private IStoreService storeService;
 
     @GetMapping
     public List<Store> findAll() {

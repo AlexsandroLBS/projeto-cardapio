@@ -1,7 +1,9 @@
 package com.unifor.cardapio.controllers;
 
+import com.unifor.cardapio.controllers.interfaces.IOrderController;
 import com.unifor.cardapio.models.order.Order;
 import com.unifor.cardapio.services.OrderService;
+import com.unifor.cardapio.services.interfaces.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,9 +13,9 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/orders")
-public class OrderController {
+public class OrderController implements IOrderController {
     @Autowired
-    private OrderService orderService;
+    private IOrderService orderService;
 
     @GetMapping
     public List<Order> findAll() {

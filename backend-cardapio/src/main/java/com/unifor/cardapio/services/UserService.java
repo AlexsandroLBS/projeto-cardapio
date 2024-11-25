@@ -4,6 +4,7 @@ import com.unifor.cardapio.config.SecurityConfig;
 import com.unifor.cardapio.models.requests.RegisterRequest;
 import com.unifor.cardapio.models.user.User;
 import com.unifor.cardapio.repositories.*;
+import com.unifor.cardapio.services.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -11,7 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService implements UserDetailsService {
+public class UserService implements UserDetailsService, IUserService {
 
     private final UserRepository userRepository;
     private final SecurityConfig securityConfig;

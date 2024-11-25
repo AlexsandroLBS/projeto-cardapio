@@ -1,9 +1,10 @@
 package com.unifor.cardapio.controllers;
 
+import com.unifor.cardapio.controllers.interfaces.IAuthController;
 import com.unifor.cardapio.models.requests.LoginRequest;
 import com.unifor.cardapio.models.requests.RegisterRequest;
 import com.unifor.cardapio.models.user.User;
-import com.unifor.cardapio.services.UserService;
+import com.unifor.cardapio.services.interfaces.IUserService;
 import com.unifor.cardapio.util.JwtUtil;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,13 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/auth")
-public class AuthController {
+public class AuthController implements IAuthController {
 
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtTokenProvider;
-    private final UserService userService;
+    private final IUserService userService;
 
-    public AuthController(AuthenticationManager authenticationManager, JwtUtil jwtTokenProvider, UserService userService) {
+    public AuthController(AuthenticationManager authenticationManager, JwtUtil jwtTokenProvider, IUserService userService) {
         this.authenticationManager = authenticationManager;
         this.jwtTokenProvider = jwtTokenProvider;
         this.userService = userService;
@@ -44,9 +45,9 @@ public class AuthController {
     public ResponseEntity<User> register(@RequestBody RegisterRequest registerRequest) {
         try {
             User user = userService.createUser(registerRequest);
-            return ResponseEntity.ok(user);  // Retorna o usuário recém-criado com status 200 OK
+            return ResponseEntity.ok(user);
         } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().build();  // Caso o nome de usuário já exista, retorna erro
+            return ResponseEntity.badRequest().build();
         }
     }
 }

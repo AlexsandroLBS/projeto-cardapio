@@ -1,5 +1,6 @@
 package com.unifor.cardapio.controllers;
 
+import com.unifor.cardapio.controllers.interfaces.IDishController;
 import com.unifor.cardapio.models.dish.Dish;
 import com.unifor.cardapio.models.user.User;
 import com.unifor.cardapio.repositories.*;
@@ -12,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/dishes")
-public class DishController {
+public class DishController implements IDishController {
 
     @Autowired
     private DishRepository dishRepository;
