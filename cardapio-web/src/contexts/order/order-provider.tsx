@@ -1,36 +1,42 @@
-import React, { useState } from 'react';
-import { OrderContext } from './order-context';
-import { Cart } from '@/models/cart/cart';
-import { CartLogisticType } from '@/models/enums/cart-logistic-type';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useState } from "react";
+import { OrderContext } from "./order-context";
+import { Cart } from "@/models/cart/cart";
+import { CartLogisticType } from "@/models/enums/cart-logistic-type";
 
 const isUserLoggedIn = () => {
-  return true; 
+  return true;
 };
 
 export const emptyCart: Cart = {
-  items: [],                    
+  items: [],
   logistic: {
     price: 0,
     type: CartLogisticType.Delivery,
     address: {
-      street: '',     
-      number: '',     
-      city: '',       
-      state: '',      
-      postalCode: '', 
-      country: '',    
-    }
+      street: "",
+      number: "",
+      city: "",
+      state: "",
+      postalCode: "",
+      country: "",
+    },
   },
   coupon: {
-    code: '',
+    code: "",
     value: 0,
-    applicable: false
+    applicable: false,
   },
-  totalValue: 0
+  totalValue: 0,
 };
 
-export const OrderProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [order, setOrder] = useState<{ id: string; items: any[] }>({ id: '', items: [] });
+export const OrderProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  const [order, setOrder] = useState<{ id: string; items: any[] }>({
+    id: "",
+    items: [],
+  });
   const [cart, setCart] = useState<Cart>(emptyCart);
 
   if (!isUserLoggedIn()) {
@@ -43,4 +49,3 @@ export const OrderProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     </OrderContext.Provider>
   );
 };
-
