@@ -1,12 +1,12 @@
 import fetchAdmin from "./fetchAdmin";
 
 export type Client = {
-  id: number;
+  id?: number;
   name: string;
   email: string;
   password: string;
-  phone: string;
-  imgUrl: string;
+  phone?: string;
+  imgUrl?: string;
 };
 
 export const getClients = async (): Promise<Client[]> => {

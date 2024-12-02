@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "@/components/generics/navbar/navbar";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -17,6 +16,13 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { useUserContext } from "@/contexts/user/userContext";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 type LoginFormInputs = {
   username: string;
@@ -29,6 +35,7 @@ type SignupFormInputs = {
   email: string;
   password: string;
   passwordConfirm: string;
+  role: string;
 };
 
 const LoginPage: React.FC = () => {
@@ -43,6 +50,7 @@ const LoginPage: React.FC = () => {
   const {
     register: registerSignup,
     handleSubmit: handleSignupSubmit,
+    setValue,
     formState: { errors: signupErrors },
   } = useForm<SignupFormInputs>();
 
@@ -87,7 +95,7 @@ const LoginPage: React.FC = () => {
       username: data.username,
       email: data.email,
       password: data.password,
-      role: "ADMIN",
+      role: data.role,
     };
 
     return await registerUser(body)
@@ -100,9 +108,7 @@ const LoginPage: React.FC = () => {
 
   return (
     <>
-      <Navbar />
-
-      <div className="flex justify-center items-center mt-16">
+      <div className="flex justify-center items-center mt-10">
         <div className="w-full max-w-md p-6 shadow-md rounded-lg">
           <Tabs
             value={activeTab}
@@ -172,6 +178,22 @@ const LoginPage: React.FC = () => {
                   <CardContent className="space-y-2">
                     <div className="mb-4">
                       <div className="flex start pb-1">
+                        <Label htmlFor="role">Tipo de Usuário</Label>
+                      </div>
+                      <Select
+                        onValueChange={(value) =>
+                          setValue("role", value, { shouldValidate: true })
+                        }
+                      >
+                        <SelectTrigger className="w-full">
+                          <SelectValue placeholder="Selecione o tipo de usuário" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="CLIENT">Cliente</SelectItem>
+                          <SelectItem value="VENDOR">Vendedor</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <div className="flex start pb-1 mt-3">
                         <Label htmlFor="name">Nome Completo</Label>
                       </div>
                       <Input

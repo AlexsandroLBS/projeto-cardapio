@@ -160,9 +160,20 @@ export default function StoreList() {
             </CardHeader>
             <CardContent>
               <div className="flex justify-between">
-                <div>
-                  <p>{store.description}</p>
-                  <p className="text-sm text-gray-600">{store.address}</p>
+                <div className="flex gap-4">
+                  {store.imageUrl && (
+                    <img
+                      src={store.imageUrl}
+                      alt={"Imagem" + store.name}
+                      width={200}
+                      height={200}
+                      className="rounded-md"
+                    />
+                  )}
+                  <div>
+                    <p className="text-emerald-700">{store.description}</p>
+                    <p className="text-sm text-gray-600">{store.address}</p>
+                  </div>
                 </div>
                 {user?.role === "ROLE_ADMIN" && (
                   <Trash2

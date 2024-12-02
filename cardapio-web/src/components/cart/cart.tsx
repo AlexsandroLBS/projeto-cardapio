@@ -46,12 +46,12 @@ export default function CartModal({ cart }: CartModalProps) {
               {cart.items.map((item, index) => (
                 <div key={index} className="cart-item">
                   <img
-                    src={item.product.image.url}
-                    alt={item.product.image.alt}
-                    className="cart-item-image"
+                    src={item.product.imageUrl}
+                    alt={item.product.name}
+                    className="cart-item-image rounded-md"
                   />
                   <div className="cart-item-details">
-                    <p className="cart-item-name">{item.product.title}</p>
+                    <p className="cart-item-name">{item.product.name}</p>
                     <p className="cart-item-unit-price">
                       R$ {item.price.toFixed(2)}
                     </p>

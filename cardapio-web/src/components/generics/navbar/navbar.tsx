@@ -52,7 +52,7 @@ export default function Navbar() {
           <NavigationMenuList>
             {(user?.role === "ROLE_ADMIN" || user?.role === "ROLE_VENDOR") && (
               <NavigationMenuItem
-                className="mr-4"
+                className="mr-4 cursor-pointer"
                 onClick={() => navigate("/orders")}
               >
                 <ListCheck />
