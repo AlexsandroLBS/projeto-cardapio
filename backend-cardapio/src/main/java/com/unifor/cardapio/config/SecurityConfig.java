@@ -19,25 +19,33 @@ import java.util.List;
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .cors()
                 .and()
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/dishes").permitAll()
+                        .requestMatchers("/dishes/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/**").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/api/**").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/api/**").permitAll()
                         .anyRequest().authenticated()
                 )
-                .httpBasic(httpBasicConfigurer -> {})
-                .csrf(csrf -> csrf.disable());
+                .csrf(csrf -> csrf.disable())
+                .httpBasic(httpBasicConfigurer -> {});
 
         return http.build();
     }
 
+
+
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:5173"));
+
+        configuration.setAllowedOriginPatterns(List.of("http://localhost:5173"));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
         configuration.setAllowCredentials(true);
@@ -47,6 +55,7 @@ public class SecurityConfig {
 
         return source;
     }
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {

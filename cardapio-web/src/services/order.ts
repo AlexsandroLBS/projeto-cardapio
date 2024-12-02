@@ -30,5 +30,10 @@ export const createOrder = async (body: Order): Promise<Order> => {
 };
 
 export const deleteOrder = async (id: number) => {
-  return await fetchAdmin("/api/orders/" + id);
+  return await fetchAdmin("/api/orders/" + id, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 };

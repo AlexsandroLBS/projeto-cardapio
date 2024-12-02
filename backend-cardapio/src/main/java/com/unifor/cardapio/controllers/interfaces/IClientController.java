@@ -8,6 +8,6 @@ import java.util.List;
 public interface IClientController {
     List<Client> findAll();
     ResponseEntity<Client> findById(Integer id);
-    Client save(Client client);
+    ResponseEntity<Client> save(Client client);
     ResponseEntity<Void> deleteById(Integer id);
 }

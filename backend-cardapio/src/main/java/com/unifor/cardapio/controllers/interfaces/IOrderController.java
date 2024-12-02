@@ -8,6 +8,6 @@ import java.util.List;
 public interface IOrderController {
     List<Order> findAll();
     ResponseEntity<Order> findById(Integer id);
-    Order save(Order order);
+    ResponseEntity<Order> save(Order order);
     ResponseEntity<Void> deleteById(Integer id);
 }

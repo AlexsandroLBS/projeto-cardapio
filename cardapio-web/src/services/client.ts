@@ -28,5 +28,10 @@ export const createClient = async (body: Client): Promise<Client> => {
 };
 
 export const deleteClient = async (id: number) => {
-  return await fetchAdmin("/api/clients/" + id);
+  return await fetchAdmin("/api/clients/" + id, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 };

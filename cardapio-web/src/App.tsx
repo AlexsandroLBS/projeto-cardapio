@@ -9,6 +9,7 @@ import StoreIdHandler from "./utils/handlers/store-id-handler";
 import { Toaster } from "./components/ui/sonner";
 import { UserProvider } from "./contexts/user/userContext";
 import Home from "./pages/home/home";
+import Orders from "./pages/orders/orders";
 
 function App() {
   return (
@@ -32,6 +33,14 @@ function App() {
                 element={
                   <OrderProvider>
                     <Home />
+                  </OrderProvider>
+                }
+              />
+              <Route
+                path="/orders"
+                element={
+                  <OrderProvider>
+                    <Orders />
                   </OrderProvider>
                 }
               />

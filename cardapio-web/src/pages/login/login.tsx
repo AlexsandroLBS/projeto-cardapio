@@ -16,6 +16,7 @@ import { loginUser, registerUser } from "@/services/auth";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import { useUserContext } from "@/contexts/user/userContext";
 
 type LoginFormInputs = {
   username: string;
@@ -32,7 +33,7 @@ type SignupFormInputs = {
 
 const LoginPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState("login");
-
+  const { refreshUser } = useUserContext();
   const {
     register: registerLogin,
     handleSubmit: handleLoginSubmit,
@@ -60,14 +61,15 @@ const LoginPage: React.FC = () => {
       .then((res) => {
         if (typeof res === "string") {
           localStorage.setItem("token", res);
-          toast("Login realizado com sucesso!");
+          toast.success("Login realizado com sucesso!");
+          refreshUser();
           navigate("/");
         }
       })
       .catch((err) => {
         if (err.status === 401) {
           console.error("wrong passoword", err);
-          toast("Usuário ou senha incorretos");
+          toast.error("Usuário ou senha incorretos");
           return;
         }
         console.error("login failed:", err);
@@ -90,7 +92,7 @@ const LoginPage: React.FC = () => {
 
     return await registerUser(body)
       .then(() => {
-        toast("Usuário cadastrado com sucesso!");
+        toast.success("Usuário cadastrado com sucesso!");
         setActiveTab("login");
       })
       .catch((err) => console.error(err));

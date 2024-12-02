@@ -29,9 +29,11 @@ public class ClientController implements IClientController {
     }
 
     @PostMapping
-    public Client save(@RequestBody Client client) {
-        return clientService.save(client);
+    public ResponseEntity<Client> save(@RequestBody Client client) {
+        Client savedClient = clientService.save(client);
+        return ResponseEntity.ok(savedClient);
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable Integer id) {

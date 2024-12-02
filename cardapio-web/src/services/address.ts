@@ -30,5 +30,10 @@ export const createAddress = async (body: Address): Promise<Address> => {
 };
 
 export const deleteAddress = async (id: number) => {
-  return await fetchAdmin("/api/addresses/" + id);
+  return await fetchAdmin("/api/addresses/" + id, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 };

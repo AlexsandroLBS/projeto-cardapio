@@ -16,6 +16,7 @@ type User = {
 type UserContextType = {
   user?: User;
   setUser: React.Dispatch<React.SetStateAction<User | undefined>>;
+  refreshUser: () => void; // Função para verificar novamente o token
 };
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
@@ -23,7 +24,7 @@ const UserContext = createContext<UserContextType | undefined>(undefined);
 export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | undefined>(undefined);
 
-  useEffect(() => {
+  const verifyToken = () => {
     const token = localStorage.getItem("token");
     if (token) {
       try {
@@ -35,21 +36,32 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
         } else {
           console.warn("Token expirado");
           localStorage.removeItem("token");
+          setUser(undefined);
         }
       } catch (error) {
         console.error("Erro ao decodificar o token:", error);
+        setUser(undefined);
       }
+    } else {
+      setUser(undefined);
     }
+  };
+
+  useEffect(() => {
+    verifyToken();
   }, []);
 
+  const refreshUser = () => {
+    verifyToken();
+  };
+
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={{ user, setUser, refreshUser }}>
       {children}
     </UserContext.Provider>
   );
 };
 
-// eslint-disable-next-line react-refresh/only-export-components
 export const useUserContext = () => {
   const context = useContext(UserContext);
   if (!context) {

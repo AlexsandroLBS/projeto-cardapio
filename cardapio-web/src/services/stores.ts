@@ -1,21 +1,21 @@
 import fetchAdmin from "./fetchAdmin";
 
 export type Store = {
-  id: number;
+  id?: number;
   name: string;
   description: string;
   address: string;
   phone: string;
   imageUrl: string;
-  storeId: number;
-  createdAt: string;
+  storeId?: number;
+  createdAt?: string;
 };
 
 export const getStores = async (): Promise<Store[]> => {
   return await fetchAdmin("/api/stores");
 };
 
-export const getStore = async (id: number): Promise<Store> => {
+export const getStore = async (id: string): Promise<Store> => {
   return await fetchAdmin("/api/stores/" + id);
 };
 
@@ -30,5 +30,10 @@ export const createStore = async (body: Store): Promise<Store> => {
 };
 
 export const deleteStore = async (id: number) => {
-  return await fetchAdmin("/api/stores/" + id);
+  return await fetchAdmin("/api/stores/" + id, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 };

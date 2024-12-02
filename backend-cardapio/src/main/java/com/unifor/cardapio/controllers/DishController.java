@@ -23,13 +23,6 @@ public class DishController implements IDishController {
 
     @PostMapping
     public Dish addDish(@RequestBody Dish dish) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User currentUser = (User) authentication.getPrincipal();
-
-        if (!currentUser.getStoreId().equals(dish.getStore().getId())) {
-            throw new SecurityException("Você não tem permissão para adicionar um prato nesta loja");
-        }
-
         return dishRepository.save(dish);
     }
 
