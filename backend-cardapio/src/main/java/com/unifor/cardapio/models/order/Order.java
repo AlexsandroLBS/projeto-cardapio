@@ -1,17 +1,13 @@
 package com.unifor.cardapio.models.order;
 
 import java.util.Date;
+import java.util.*;
 
 import com.unifor.cardapio.models.client.Client;
+import com.unifor.cardapio.models.orderItem.OrderItem;
 import com.unifor.cardapio.models.store.Store;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -42,4 +38,8 @@ public class Order {
 	@OneToOne
 	@JoinColumn(name = "fk_store")
 	private Store store;
+
+	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<OrderItem> items = new ArrayList<>();
+
 }
