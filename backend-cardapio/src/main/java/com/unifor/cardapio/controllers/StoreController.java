@@ -29,9 +29,11 @@ public class StoreController implements IStoreController {
     }
 
     @PostMapping
-    public Store save(@RequestBody Store store) {
-        return storeService.save(store);
+    public ResponseEntity<Store> save(@RequestBody Store store) {
+        Store savedStore = storeService.save(store);
+        return ResponseEntity.ok(savedStore);
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable Integer id) {

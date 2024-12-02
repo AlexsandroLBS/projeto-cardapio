@@ -29,9 +29,11 @@ public class OrderController implements IOrderController {
     }
 
     @PostMapping
-    public Order save(@RequestBody Order order) {
-        return orderService.save(order);
+    public ResponseEntity<Order> save(@RequestBody Order order) {
+        Order savedOrder = orderService.save(order);
+        return ResponseEntity.ok(savedOrder);
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable Integer id) {

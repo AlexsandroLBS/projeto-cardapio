@@ -4,6 +4,7 @@ import com.unifor.cardapio.enums.UserRole;
 import com.unifor.cardapio.models.store.Store;
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -30,6 +31,7 @@ public class User implements UserDetails {
     private String phoneNumber;
     private String address;
 
+    @Setter
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id")
     private Store store;

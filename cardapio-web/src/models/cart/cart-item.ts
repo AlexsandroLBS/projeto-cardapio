@@ -1,8 +1,8 @@
-import { Product } from "../product";
+import { Dish } from "@/services/dishes";
 
 export interface CartItem {
-    product: Product,
-    price: number,
-    quantity: number,
-    selectedOptions: string[], //TODO AJUSTAR ISSO DEPOIS
+  product: Dish;
+  price: number;
+  quantity: number;
+  selectedOptions: string[]; //TODO AJUSTAR ISSO DEPOIS
 }
