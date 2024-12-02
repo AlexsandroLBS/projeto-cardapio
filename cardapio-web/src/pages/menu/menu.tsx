@@ -50,8 +50,7 @@ export default function MenuPage() {
           <>
             <div className="menuContent flex flex-col">
               <StoreBanner store={store}></StoreBanner>
-              {(user?.role === "ROLE_VENDOR" ||
-                user?.role === "ROLE_ADMIN") && (
+              {(user?.role === "VENDOR" || user?.role === "ADMIN") && (
                 <Button onClick={() => setAddDishSheetOpen(true)}>
                   Adicionar prato
                 </Button>

@@ -15,7 +15,7 @@ export const getStores = async (): Promise<Store[]> => {
   return await fetchAdmin("/api/stores");
 };
 
-export const getStore = async (id: string): Promise<Store> => {
+export const getStore = async (id: number): Promise<Store> => {
   return await fetchAdmin("/api/stores/" + id);
 };
 

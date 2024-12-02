@@ -11,12 +11,19 @@ type User = {
   sub: string;
   exp?: number;
   role: string;
+  id: number;
+  email: string;
+  name: string;
+  phoneNumber?: string;
+  address?: string;
+  storeId?: number;
+  username: string;
 };
 
 type UserContextType = {
   user?: User;
   setUser: React.Dispatch<React.SetStateAction<User | undefined>>;
-  refreshUser: () => void; // Função para verificar novamente o token
+  refreshUser: () => void;
 };
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
@@ -29,17 +36,17 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     if (token) {
       try {
         const decodedToken: User = jwtDecode(token);
+        console.log(decodedToken);
         const currentTime = Date.now() / 1000;
 
         if (decodedToken.exp && decodedToken.exp > currentTime) {
           setUser(decodedToken);
         } else {
-          console.warn("Token expirado");
           localStorage.removeItem("token");
           setUser(undefined);
         }
       } catch (error) {
-        console.error("Erro ao decodificar o token:", error);
+        console.error(error);
         setUser(undefined);
       }
     } else {
@@ -62,6 +69,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useUserContext = () => {
   const context = useContext(UserContext);
   if (!context) {

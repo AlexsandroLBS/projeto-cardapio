@@ -1,11 +1,12 @@
 import fetchAdmin from "./fetchAdmin";
 
-type RegisterRequest = {
+export type RegisterRequest = {
   username: string;
   name: string;
   email: string;
   password: string;
   role: string;
+  storeId?: number;
 };
 
 export const registerUser = async (body: RegisterRequest) => {

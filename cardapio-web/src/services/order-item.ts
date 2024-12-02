@@ -2,7 +2,7 @@ import fetchAdmin from "./fetchAdmin";
 import { Order } from "./order";
 
 export type OrderItem = {
-  id: number;
+  id?: number;
   amount: number;
   price: number;
   itemDescription: string;

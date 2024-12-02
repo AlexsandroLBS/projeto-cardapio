@@ -12,7 +12,13 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
-import { createStore, deleteStore, getStores, Store } from "@/services/stores";
+import {
+  createStore,
+  deleteStore,
+  getStore,
+  getStores,
+  Store,
+} from "@/services/stores";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/generics/navbar/navbar";
@@ -23,6 +29,7 @@ export default function StoreList() {
   const { user } = useUserContext();
   const navigate = useNavigate();
   const [stores, setStores] = useState<Store[]>([]);
+  const [store, setStore] = useState<Store>();
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [newStore, setNewStore] = useState<Partial<Store>>({
     name: "",
@@ -33,10 +40,25 @@ export default function StoreList() {
   });
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) navigate("/login");
+  }, [navigate]);
+
+  useEffect(() => {
+    if (user?.role === "VENDOR" && user.storeId) {
+      getStore(user.storeId).then((res) => {
+        setStore(res);
+      });
+      return;
+    }
     getStores().then((res) => {
       setStores(res);
     });
-  }, []);
+  }, [user]);
+
+  useEffect(() => {
+    if (store) navigate("/s/" + store.id);
+  }, [store, navigate]);
 
   const handleCreateStore = async () => {
     if (
@@ -95,7 +117,7 @@ export default function StoreList() {
         <h1 className="text-xl font-bold">Lista de Lojas</h1>
         <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
           <SheetTrigger asChild>
-            {user?.role === "ROLE_ADMIN" && <Button>Criar Loja</Button>}
+            {user?.role === "ADMIN" && <Button>Criar Loja</Button>}
           </SheetTrigger>
           <SheetContent>
             <SheetHeader>
@@ -175,7 +197,7 @@ export default function StoreList() {
                     <p className="text-sm text-gray-600">{store.address}</p>
                   </div>
                 </div>
-                {user?.role === "ROLE_ADMIN" && (
+                {user?.role === "ADMIN" && (
                   <Trash2
                     onClick={(e) => {
                       e.stopPropagation();

@@ -54,7 +54,7 @@ export default function Orders() {
                   <p>{order.store.name}</p>
                   <p className="text-sm text-gray-600">{order.store.address}</p>
                 </div>
-                {user?.role === "ROLE_ADMIN" && (
+                {user?.role === "ADMIN" && (
                   <Trash2
                     onClick={() => {
                       handleDeleteStore(order.id!);

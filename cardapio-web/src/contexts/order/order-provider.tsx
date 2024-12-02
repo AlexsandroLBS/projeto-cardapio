@@ -39,12 +39,18 @@ export const OrderProvider: React.FC<{ children: React.ReactNode }> = ({
   });
   const [cart, setCart] = useState<Cart>(emptyCart);
 
+  const clearCart = () => {
+    setCart(emptyCart);
+  };
+
   if (!isUserLoggedIn()) {
     return null;
   }
 
   return (
-    <OrderContext.Provider value={{ order, cart, setOrder, setCart }}>
+    <OrderContext.Provider
+      value={{ order, cart, setOrder, setCart, clearCart }}
+    >
       {children}
     </OrderContext.Provider>
   );

@@ -11,7 +11,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { loginUser, registerUser } from "@/services/auth";
+import { loginUser, RegisterRequest, registerUser } from "@/services/auth";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
@@ -23,6 +23,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { createStore } from "@/services/stores";
 
 type LoginFormInputs = {
   username: string;
@@ -36,6 +37,11 @@ type SignupFormInputs = {
   password: string;
   passwordConfirm: string;
   role: string;
+  storeName: string;
+  address: string;
+  phone: string;
+  imageUrl: string;
+  description: string;
 };
 
 const LoginPage: React.FC = () => {
@@ -51,6 +57,7 @@ const LoginPage: React.FC = () => {
     register: registerSignup,
     handleSubmit: handleSignupSubmit,
     setValue,
+    watch,
     formState: { errors: signupErrors },
   } = useForm<SignupFormInputs>();
 
@@ -90,13 +97,32 @@ const LoginPage: React.FC = () => {
       alert("Senhas não coincidem");
       return;
     }
-    const body = {
+
+    let storeId = 0;
+
+    if (data.role === "VENDOR") {
+      const store = {
+        name: data.storeName,
+        description: data.description,
+        address: data.address,
+        phone: data.phone,
+        imageUrl: data.imageUrl,
+      };
+
+      await createStore(store).then((res) => {
+        if (res && res.id) storeId = res.id;
+      });
+    }
+
+    const body: RegisterRequest = {
       name: data.name,
       username: data.username,
       email: data.email,
       password: data.password,
       role: data.role,
     };
+
+    if (storeId) body.storeId = storeId;
 
     return await registerUser(body)
       .then(() => {
@@ -131,14 +157,14 @@ const LoginPage: React.FC = () => {
                   <CardContent className="space-y-2">
                     <div className="mb-4">
                       <div className="flex start pb-1">
-                        <Label htmlFor="email">Nome de Usuário</Label>
+                        <Label htmlFor="email">Usuário</Label>
                       </div>
                       <Input
                         id="username"
                         type="text"
                         error={!!loginErrors.username}
                         {...registerLogin("username", {
-                          required: "Nome é obrigatório",
+                          required: "Usuário é obrigatório",
                         })}
                         placeholder="Digite seu usuário"
                       />
@@ -193,7 +219,9 @@ const LoginPage: React.FC = () => {
                           <SelectItem value="VENDOR">Vendedor</SelectItem>
                         </SelectContent>
                       </Select>
-                      <div className="flex start pb-1 mt-3">
+                    </div>
+                    <div className="mb-4">
+                      <div className="flex start pb-1">
                         <Label htmlFor="name">Nome Completo</Label>
                       </div>
                       <Input
@@ -207,7 +235,7 @@ const LoginPage: React.FC = () => {
                     </div>
                     <div className="mb-4">
                       <div className="flex start pb-1">
-                        <Label htmlFor="username">Nome de Usuário</Label>
+                        <Label htmlFor="username">Usuário</Label>
                       </div>
                       <Input
                         id="username"
@@ -235,6 +263,74 @@ const LoginPage: React.FC = () => {
                         <Label>{signupErrors.email.message}</Label>
                       )}
                     </div>
+                    {watch("role") === "VENDOR" && (
+                      <>
+                        <div className="mb-4 space-y-4">
+                          <div className="flex start pb-1">
+                            <Label htmlFor="storeName">Nome da Empresa</Label>
+                          </div>
+                          <Input
+                            id="storeName"
+                            {...registerSignup("storeName", {
+                              required:
+                                "Nome da empresa é obrigatório para vendedores",
+                            })}
+                            placeholder="Digite o nome da empresa"
+                          />
+                        </div>
+                        <div className="mb-4">
+                          <div className="flex start pb-1">
+                            <Label htmlFor="storeName">Descrição</Label>
+                          </div>
+                          <Input
+                            id="storeName"
+                            {...registerSignup("storeName", {
+                              required:
+                                "Descrição é obrigatório para vendedores",
+                            })}
+                            placeholder="Digite uma descrição do seu negócio"
+                          />
+                        </div>
+                        <div className="mb-4">
+                          <div className="flex start pb-1">
+                            <Label htmlFor="storeName">Imagem da empresa</Label>
+                          </div>
+                          <Input
+                            id="imageUrl"
+                            {...registerSignup("imageUrl", {
+                              required: "Imagem da empresa é obrigatório",
+                            })}
+                            placeholder="Digite um URL da imagem da sua empresa"
+                          />
+                        </div>
+                        <div className="mb-4">
+                          <div className="flex start pb-1">
+                            <Label htmlFor="address">Endereço</Label>
+                          </div>
+                          <Input
+                            id="address"
+                            {...registerSignup("address", {
+                              required:
+                                "Endereço é obrigatório para vendedores",
+                            })}
+                            placeholder="Digite o endereço da empresa"
+                          />
+                        </div>
+                        <div className="mb-4">
+                          <div className="flex start pb-1">
+                            <Label htmlFor="phone">Telefone</Label>
+                          </div>
+                          <Input
+                            id="phone"
+                            {...registerSignup("phone", {
+                              required:
+                                "Telefone é obrigatório para vendedores",
+                            })}
+                            placeholder="Digite o telefone da empresa"
+                          />
+                        </div>
+                      </>
+                    )}
                     <div className="mb-4">
                       <div className="flex start pb-1">
                         <Label htmlFor="password">Senha</Label>
@@ -266,6 +362,7 @@ const LoginPage: React.FC = () => {
                       />
                     </div>
                   </CardContent>
+
                   <CardFooter className="flex justify-center">
                     <Button type="submit" className="w-[200px]">
                       Criar conta

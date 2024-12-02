@@ -1,14 +1,12 @@
-import { Client } from "./client";
 import fetchAdmin from "./fetchAdmin";
-import { Store } from "./stores";
 
 export type Order = {
-  id: number;
+  id?: number;
   orderTime: string;
   confirmedPay: boolean;
   confirmedDelivery: boolean;
-  client: Client;
-  store: Store;
+  client: { id: number };
+  store: { id: number };
 };
 
 export const getOrders = async (): Promise<Order[]> => {
