@@ -7,6 +7,12 @@ export type Order = {
   confirmedDelivery: boolean;
   client: { id: number };
   store: { id: number };
+  items: {
+    itemName: string;
+    amount: number;
+    price: number;
+    itemDescription: string;
+  };
 };
 
 export const getOrders = async (): Promise<Order[]> => {

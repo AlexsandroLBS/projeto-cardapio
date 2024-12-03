@@ -37,6 +37,10 @@ export default function CartModal({ cart }: CartModalProps) {
     });
   }, []);
 
+  useEffect(() => {
+    console.log(cart);
+  }, [cart]);
+
   const findOrCreateClient = async (username: string): Promise<Client> => {
     const existingClient = clients?.find((client) => client.name === username);
 
@@ -61,6 +65,12 @@ export default function CartModal({ cart }: CartModalProps) {
       alert("Você precisa estar logado e adicionar itens ao carrinho.");
       return;
     }
+    const items = cart.items.map((item) => ({
+      itemName: item.product.name,
+      amount: item.quantity,
+      price: item.price,
+      itemDescription: item.product.description || "",
+    }));
 
     findOrCreateClient(user.username)
       .then((client) => {
@@ -70,6 +80,7 @@ export default function CartModal({ cart }: CartModalProps) {
           confirmedDelivery: false,
           client: { id: Number(client.id) },
           store: { id: Number(storeId) },
+          items,
         };
 
         return createOrder(orderBody);
@@ -80,7 +91,7 @@ export default function CartModal({ cart }: CartModalProps) {
       })
       .catch((error) => {
         console.error("Erro ao criar pedido:", error);
-        toast.error("Erro ao criar pedido. Tente novamente.");
+        toast.error("Erro ao processar pedido. Tente novamente.");
       });
   };
 

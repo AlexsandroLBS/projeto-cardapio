@@ -20,6 +20,7 @@ export default function Orders() {
 
   useEffect(() => {
     getOrders().then((res) => {
+      console.log(res);
       setOrders(res);
     });
   }, []);
@@ -53,6 +54,12 @@ export default function Orders() {
                 <div>
                   <p>{order.store.name}</p>
                   <p className="text-sm text-gray-600">{order.store.address}</p>
+                  <p className="text-sm text-gray-600">
+                    {order.confirmedDelivery ? "Entregue" : "Não entregue"}
+                  </p>
+                  <p className="text-sm text-gray-600">
+                    {order.confirmedPay ? "Pago" : "Esperando pagamento"}
+                  </p>
                 </div>
                 {user?.role === "ADMIN" && (
                   <Trash2

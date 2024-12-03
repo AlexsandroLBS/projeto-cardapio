@@ -11,15 +11,15 @@ export type OrderItem = {
 };
 
 export const getOrderItems = async (): Promise<OrderItem[]> => {
-  return await fetchAdmin("/api/orders-items");
+  return await fetchAdmin("/api/order-items");
 };
 
 export const getOrderItem = async (id: number): Promise<OrderItem> => {
-  return await fetchAdmin("/api/orders-items/" + id);
+  return await fetchAdmin("/api/order-items/" + id);
 };
 
 export const createOrderItem = async (body: OrderItem): Promise<OrderItem> => {
-  return await fetchAdmin("/api/orders-items", {
+  return await fetchAdmin("/api/order-items", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -29,7 +29,7 @@ export const createOrderItem = async (body: OrderItem): Promise<OrderItem> => {
 };
 
 export const deleteOrderItem = async (id: number) => {
-  return await fetchAdmin("/api/orders-items/" + id, {
+  return await fetchAdmin("/api/order-items/" + id, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
