@@ -1,6 +1,5 @@
 import Navbar from "@/components/generics/navbar/navbar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-
 import { useUserContext } from "@/contexts/user/userContext";
 import { deleteOrder, getOrders, Order } from "@/services/order";
 import { Trash2 } from "lucide-react";
@@ -47,28 +46,50 @@ export default function Orders() {
         {orders.map((order) => (
           <Card key={order.id}>
             <CardHeader>
-              <CardTitle>{order.client.name}</CardTitle>
+              <CardTitle>Pedido #{order.id}</CardTitle>
+              <p className="text-sm text-gray-600">
+                Cliente: {order.client.name}
+              </p>
             </CardHeader>
             <CardContent>
-              <div className="flex justify-between">
-                <div>
-                  <p>{order.store.name}</p>
-                  <p className="text-sm text-gray-600">{order.store.address}</p>
-                  <p className="text-sm text-gray-600">
-                    {order.confirmedDelivery ? "Entregue" : "Não entregue"}
-                  </p>
-                  <p className="text-sm text-gray-600">
-                    {order.confirmedPay ? "Pago" : "Esperando pagamento"}
-                  </p>
-                </div>
-                {user?.role === "ADMIN" && (
+              <div>
+                <h2 className="font-bold text-lg">{order.store.name}</h2>
+                <p className="text-sm text-gray-600">{order.store.address}</p>
+                <p className="text-sm text-gray-600">
+                  Status de entrega:{" "}
+                  {order.confirmedDelivery ? "Entregue" : "Não entregue"}
+                </p>
+                <p className="text-sm text-gray-600">
+                  Status de pagamento:{" "}
+                  {order.confirmedPay ? "Pago" : "Aguardando pagamento"}
+                </p>
+              </div>
+              <div className="mt-4">
+                <h3 className="font-semibold">Itens:</h3>
+                <ul className="list-disc ml-8">
+                  {order.items.map((item) => (
+                    <li key={item.id}>
+                      <p>
+                        <strong>{item.itemName}</strong> - {item.amount}x R${" "}
+                        {item.price.toFixed(2)}
+                      </p>
+                      <p className="text-sm text-gray-600">
+                        {item.itemDescription}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              {user?.role === "ADMIN" && (
+                <div className="flex justify-end mt-4">
                   <Trash2
+                    className="cursor-pointer text-red-500"
                     onClick={() => {
                       handleDeleteStore(order.id!);
                     }}
                   />
-                )}
-              </div>
+                </div>
+              )}
             </CardContent>
           </Card>
         ))}

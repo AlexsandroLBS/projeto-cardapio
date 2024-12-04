@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Cart } from "@/models/cart/cart";
 import { CartLogisticType } from "@/models/enums/cart-logistic-type";
 import { createContext, Dispatch, SetStateAction } from "react";

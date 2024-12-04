@@ -17,18 +17,17 @@ import { useContext, useEffect, useState } from "react";
 import { OrderContext } from "@/contexts/order/order-context";
 import { useUserContext } from "@/contexts/user/userContext";
 
+import { toast } from "sonner";
+import { createOrder } from "@/services/order";
+import { Client, createClient, getClients } from "@/services/client";
+
 type CartModalProps = {
   cart: Cart;
 };
-import { toast } from "sonner";
-import { createOrder } from "@/services/order";
-import { useParams } from "react-router-dom";
-import { Client, createClient, getClients } from "@/services/client";
 
 export default function CartModal({ cart }: CartModalProps) {
   const { clearCart } = useContext(OrderContext);
   const { user } = useUserContext();
-  const { storeId } = useParams();
   const [clients, setClients] = useState<Client[]>();
 
   useEffect(() => {
@@ -79,7 +78,7 @@ export default function CartModal({ cart }: CartModalProps) {
           confirmedPay: false,
           confirmedDelivery: false,
           client: { id: Number(client.id) },
-          store: { id: Number(storeId) },
+          store: { id: Number(cart.items[0].storeId) },
           items,
         };
 

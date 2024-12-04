@@ -1,5 +1,7 @@
 package com.unifor.cardapio.models.orderItem;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.unifor.cardapio.models.order.Order;
 
 import jakarta.persistence.Entity;
@@ -33,6 +35,8 @@ public class OrderItem {
 
 	@ManyToOne
 	@JoinColumn(name = "fk_order")
+	@JsonIgnore
 	private Order order;
+
 
 }

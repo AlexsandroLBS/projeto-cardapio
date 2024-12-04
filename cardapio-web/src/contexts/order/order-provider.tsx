@@ -8,6 +8,7 @@ const isUserLoggedIn = () => {
   return true;
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const emptyCart: Cart = {
   items: [],
   logistic: {
@@ -49,7 +50,13 @@ export const OrderProvider: React.FC<{ children: React.ReactNode }> = ({
 
   return (
     <OrderContext.Provider
-      value={{ order, cart, setOrder, setCart, clearCart }}
+      value={{
+        order,
+        cart,
+        setOrder,
+        setCart,
+        clearCart,
+      }}
     >
       {children}
     </OrderContext.Provider>

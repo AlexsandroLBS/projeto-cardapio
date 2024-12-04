@@ -1,13 +1,11 @@
-CREATE TABLE orderitem (
-	id BIGINT NOT NULL AUTO_INCREMENT,
-	order_id BIGINT NOT NULL,
-	dish_id BIGINT NOT NULL,
-	name VARCHAR(100) NOT NULL,
-	description TEXT NOT NULL,
-	price DECIMAL(10, 2) NOT NULL,
-	img_url VARCHAR(120) DEFAULT NULL,
-	PRIMARY KEY(id),
-	FOREIGN KEY (order_id) REFERENCES orders(id),
-	FOREIGN KEY (dish_id) REFERENCES dishes(id)
+CREATE TABLE orderitems (
+                             id BIGINT NOT NULL AUTO_INCREMENT,
+                             fk_order BIGINT NOT NULL,
+                             name VARCHAR(100) NOT NULL,
+                             description TEXT,
+                             price DECIMAL(10, 2) NOT NULL,
+                             img_url VARCHAR(120) DEFAULT NULL,
+                             amount INT NOT NULL,
+                             PRIMARY KEY (id),
+                             FOREIGN KEY (fk_order) REFERENCES orders(id)
 );
-

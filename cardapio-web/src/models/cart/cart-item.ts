@@ -4,5 +4,6 @@ export interface CartItem {
   product: Dish;
   price: number;
   quantity: number;
-  selectedOptions: string[]; //TODO AJUSTAR ISSO DEPOIS
+  selectedOptions: string[];
+  storeId?: string;
 }

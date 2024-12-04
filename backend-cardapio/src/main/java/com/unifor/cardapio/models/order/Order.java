@@ -3,6 +3,7 @@ package com.unifor.cardapio.models.order;
 import java.util.Date;
 import java.util.*;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.unifor.cardapio.models.client.Client;
 import com.unifor.cardapio.models.orderItem.OrderItem;
 import com.unifor.cardapio.models.store.Store;
@@ -35,7 +36,7 @@ public class Order {
 	@JoinColumn(name = "fk_client")
 	private Client client;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "fk_store")
 	private Store store;
 

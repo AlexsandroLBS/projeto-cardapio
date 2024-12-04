@@ -12,6 +12,8 @@ import { OrderContext } from "@/contexts/order/order-context";
 import { CartItem } from "@/models/cart/cart-item";
 import "./product-dialog.css";
 import { Dish } from "@/services/dishes";
+import { useParams } from "react-router-dom";
+import { toast } from "sonner";
 
 interface ProductDialogProps {
   isOpen: boolean;
@@ -26,6 +28,7 @@ export default function ProductDialog({
 }: ProductDialogProps) {
   const [quantity, setQuantity] = useState<number>(1);
   const orderContext = useContext(OrderContext);
+  const { storeId } = useParams();
 
   if (!orderContext) {
     return <p>Loading...</p>;
@@ -39,33 +42,56 @@ export default function ProductDialog({
       price: product.price * quantity,
       quantity: quantity,
       selectedOptions: [],
+      storeId: storeId,
     };
 
-    const existingItemIndex = cart.items.findIndex(
-      (item) => item.product.id === newItem.product.id
-    );
-
-    let updatedItems;
-
-    if (existingItemIndex >= 0) {
-      const updatedItemsList = [...cart.items];
-      updatedItemsList[existingItemIndex] = {
-        ...updatedItemsList[existingItemIndex],
-        quantity:
-          updatedItemsList[existingItemIndex].quantity + newItem.quantity,
-      };
-      updatedItems = updatedItemsList;
-    } else {
-      updatedItems = [...cart.items, newItem];
+    if (!newItem.storeId) {
+      console.error("O item deve conter um storeId.");
+      return;
     }
 
-    orderContext.setCart({
-      ...cart,
-      items: updatedItems,
-      totalValue: updatedItems.reduce((accumulator, item) => {
-        return accumulator + item.price;
-      }, 0),
-    });
+    const currentStoreIds = cart.items.map((item) => item.storeId);
+    const hasDifferentStore = currentStoreIds.some(
+      (currentStoreId) => currentStoreId && currentStoreId !== newItem.storeId
+    );
+
+    if (hasDifferentStore) {
+      orderContext.setCart({
+        ...cart,
+        items: [newItem],
+        totalValue: newItem.price,
+      });
+      toast.info(
+        "O carrinho foi atualizado porque os itens são de outra loja."
+      );
+    } else {
+      const existingItemIndex = cart.items.findIndex(
+        (item) => item.product.id === newItem.product.id
+      );
+
+      let updatedItems;
+
+      if (existingItemIndex >= 0) {
+        const updatedItemsList = [...cart.items];
+        updatedItemsList[existingItemIndex] = {
+          ...updatedItemsList[existingItemIndex],
+          quantity:
+            updatedItemsList[existingItemIndex].quantity + newItem.quantity,
+        };
+        updatedItems = updatedItemsList;
+      } else {
+        updatedItems = [...cart.items, newItem];
+      }
+
+      orderContext.setCart({
+        ...cart,
+        items: updatedItems,
+        totalValue: updatedItems.reduce(
+          (accumulator, item) => accumulator + item.price * item.quantity,
+          0
+        ),
+      });
+    }
 
     onClose();
   };

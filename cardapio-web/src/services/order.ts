@@ -12,7 +12,7 @@ export type Order = {
     amount: number;
     price: number;
     itemDescription: string;
-  };
+  }[];
 };
 
 export const getOrders = async (): Promise<Order[]> => {

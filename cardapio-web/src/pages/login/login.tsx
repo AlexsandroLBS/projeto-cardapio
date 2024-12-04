@@ -283,8 +283,8 @@ const LoginPage: React.FC = () => {
                             <Label htmlFor="storeName">Descrição</Label>
                           </div>
                           <Input
-                            id="storeName"
-                            {...registerSignup("storeName", {
+                            id="description"
+                            {...registerSignup("description", {
                               required:
                                 "Descrição é obrigatório para vendedores",
                             })}
